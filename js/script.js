@@ -29,13 +29,25 @@ button.addEventListener('click', function(){
 
     let userIsAllowed = false;
 
-    for(let i = 0; i < validEmail.length; i++){
+    for(let i = 0; i < validEmail.length && !userIsAllowed; i++){
         console.log('mail controllata: ', validEmail[i]);
         console.log('mail dell utente: ', userEmail);
 
         if(userEmail === validEmail[i]){
             console.log('trovata');
+            userIsAllowed = true;
         }
+    }
+
+    console.log('utente autorizzato: ', userIsAllowed);
+
+    if(userIsAllowed){
+        button.classList.add('d-none');
+        form.classList.add('d-none');
+        result.innerText = "Benvenuto";
+    } else {
+        input.classList.add('is-invalid');
+        error.innerText = "Non sei autorizzato";
     }
 });
 
